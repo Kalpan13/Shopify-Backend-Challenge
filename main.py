@@ -6,6 +6,7 @@ from resources.inventory_item import InventoryItem, InventoryItemList, items_ns,
 from marshmallow import ValidationError
 from loguru import logger
 import sys
+import os
 
 logger.add(sys.stderr, format="{time} | {level} : {message}", level="INFO")
 logger.add("LogFile_{time}.log", rotation="1 GB", retention="1 week")
@@ -41,5 +42,6 @@ items_ns.add_resource(InventoryItemList, "")
 if __name__ == '__main__':
     db.init_app(app)
     ma.init_app(app)
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(port=port)
     
