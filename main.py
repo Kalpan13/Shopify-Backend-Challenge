@@ -39,9 +39,8 @@ def index():
 item_ns.add_resource(InventoryItem, '/<int:id>')
 items_ns.add_resource(InventoryItemList, "")
 
-if __name__ == '__main__':
-    db.init_app(app)
-    ma.init_app(app)
-    port = int(os.environ.get('PORT', 5000))
-    app.run(port=port)
+db.init_app(app)
+ma.init_app(app)
+port = int(os.environ.get('PORT', 5000))
+app.run(port=port)
     
